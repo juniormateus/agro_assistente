@@ -1,0 +1,70 @@
+{
+  "milho": {
+    "n_por_produtividade": {
+      "60": 80,
+      "100": 120,
+      "150": 160
+    },
+    "faixas_p_mehlich": [
+      [4, 100],
+      [10, 80],
+      [20, 60],
+      [30, 30],
+      [999, 0]
+    ],
+    "faixas_sat_k": [
+      [2, 100],
+      [3, 80],
+      [999, 50]
+    ],
+    "v_percent_desejado": 60,
+    "tipo_calagem": "saturacao_por_bases",
+    "profundidade_corrigida_cm": 20,
+    "tipo_extrator_p": "Mehlich-1"
+  },
+  "soja": {
+    "n_por_produtividade": {
+      "40": 20,
+      "80": 30
+    },
+    "faixas_p_mehlich": [
+      [4, 80],
+      [10, 60],
+      [20, 40],
+      [30, 20],
+      [999, 0]
+    ],
+    "faixas_sat_k": [
+      [2, 90],
+      [3, 60],
+      [999, 30]
+    ],
+    "v_percent_desejado": 60,
+    "tipo_calagem": "saturacao_por_bases",
+    "profundidade_corrigida_cm": 20,
+    "tipo_extrator_p": "Mehlich-1"
+  },
+  "algodao": {
+    "n_por_produtividade": {
+      "250": 100,
+      "300": 120,
+      "400": 150
+    },
+    "faixas_p_mehlich": [
+      [5, 100],
+      [10, 80],
+      [20, 60],
+      [30, 40],
+      [999, 20]
+    ],
+    "faixas_sat_k": [
+      [2, 120],
+      [3, 100],
+      [999, 80]
+    ],
+    "v_percent_desejado": 65,
+    "tipo_calagem": "saturacao_por_bases",
+    "profundidade_corrigida_cm": 20,
+    "tipo_extrator_p": "Mehlich-1"
+  }
+}
