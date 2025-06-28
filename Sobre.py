@@ -1,5 +1,5 @@
 import streamlit as st
-
+st.set_page_config(page_title="🌾Agroassistente", layout="wide")
 st.markdown("""
 # 🌾 Agroassistente
 

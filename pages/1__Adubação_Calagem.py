@@ -25,7 +25,7 @@ def gerar_excel_resultado(dados_entrada, resultados):
     return buffer
 
 # Interface e cálculo
-st.set_page_config(page_title="Adubação e Calagem", layout="wide")
+st.set_page_config(page_title="🧪Adubação e Calagem", layout="wide")
 st.title("🧪 Recomendador de Adubação e Calagem")
 
 culturas = carregar_culturas()
