@@ -55,5 +55,5 @@ O Agroassistente é uma aplicação web desenvolvida para facilitar o manejo agr
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu_usuario/agroassistente.git
-   cd agroassistente
+   git clone https://github.com/seu_usuario/agro_assistente.git
+   cd agro_assistente
