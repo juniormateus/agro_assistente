@@ -1,0 +1,42 @@
+{
+    "Santa Catarina": {
+        "Campos Novos": {
+            "milho": {
+                "plantio": "Setembro a Dezembro",
+                "colheita": "Janeiro a Abril"
+            },
+            "soja": {
+                "plantio": "Outubro a Novembro",
+                "colheita": "Fevereiro a Abril"
+            },
+            "algodão": {
+                "plantio": "Outubro a Novembro",
+                "colheita": "Fevereiro a Março"
+            },
+            "tomate": {
+                "plantio": "Agosto a Novembro",
+                "colheita": "Novembro a Fevereiro"
+            }
+        }
+    },
+    "Paraná": {
+        "Londrina": {
+            "milho": {
+                "plantio": "Agosto a Novembro",
+                "colheita": "Dezembro a Março"
+            },
+            "soja": {
+                "plantio": "Setembro a Outubro",
+                "colheita": "Janeiro a Março"
+            },
+            "algodão": {
+                "plantio": "Outubro",
+                "colheita": "Fevereiro"
+            },
+            "tomate": {
+                "plantio": "Julho a Outubro",
+                "colheita": "Outubro a Janeiro"
+            }
+        }
+    }
+}

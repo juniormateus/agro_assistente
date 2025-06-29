@@ -1,0 +1,5 @@
+import streamlit as st
+from core.espacamento_pop_plantas import populacao_plantas
+from core.espacamento_pop_plantas import numero_plantas_area
+from core.espacamento_pop_plantas import espacamento_plantas_populacao_desejada
+
