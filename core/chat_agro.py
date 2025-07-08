@@ -8,8 +8,8 @@ API_TOKEN = "GROK_API"
 # Controle de chamadas por IP: armazena timestamps das chamadas recentes
 calls_by_ip = {}
 
-LIMIT_CALLS_PER_MINUTE = 50
-WINDOW_SECONDS = 108000
+LIMIT_CALLS_PER_MINUTE = 5
+WINDOW_SECONDS = 68000
 
 def pode_fazer_chamada(ip: str) -> bool:
     agora = time.time()

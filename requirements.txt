@@ -9,3 +9,5 @@ numpy
 simplekml
 matplotlib
 contextily
+fastapi
+bs4
