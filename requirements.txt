@@ -1,2 +1,11 @@
 streamlit
 xlsxwriter
+requests 
+fpdf  
+geopandas 
+folium 
+streamlit-folium 
+numpy 
+simplekml
+matplotlib
+contextily

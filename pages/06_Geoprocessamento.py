@@ -43,7 +43,7 @@ def create_map_image(geom):
 
     fig, ax = plt.subplots(figsize=(6,6))
     buffered_geom.plot(ax=ax, alpha=0)  # invisível só para ajustar zoom
-    gdf_webmerc.plot(ax=ax, alpha=0.5, edgecolor='red', facecolor='orange')
+    gdf_webmerc.plot(ax=ax, alpha=0.5, edgecolor='red', facecolor='none', linewidth=3)
 
     minx, miny, maxx, maxy = buffered_geom.total_bounds
     ax.set_xlim(minx, maxx)
@@ -61,13 +61,13 @@ def create_map_image(geom):
     os.remove(tmp_img.name)
     return img_bytes
 
-# Função para criar PDF com dados, descrição e imagem
-def create_pdf(area_ha, municipio, localidade, descricao="", image_bytes=None):
+# Função para criar PDF com dados, descrição, imagem e título dinâmico
+def create_pdf(area_ha, municipio, localidade, descricao="", image_bytes=None, titulo="Relatório da Área Desenhada"):
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=12)
 
-    pdf.cell(0, 10, "Relatório da Área Desenhada", ln=True, align="C")
+    pdf.cell(0, 10, titulo, ln=True, align="C")  # Título dinâmico
     pdf.ln(10)
 
     pdf.cell(0, 10, f"Área (ha): {area_ha:.2f}", ln=True)
@@ -87,7 +87,7 @@ def create_pdf(area_ha, municipio, localidade, descricao="", image_bytes=None):
         pdf.image(tmp_img_path, x=30, w=150)
         os.remove(tmp_img_path)
 
-    pdf_bytes = bytes(pdf.output(dest='S'))
+    pdf_bytes = pdf.output(dest='S').encode('latin1')
     return pdf_bytes
 
 # Função para buscar município e localidade via Nominatim com campos expandidos
@@ -190,10 +190,20 @@ if geom:
     # Campo para descrição
     descricao_area = st.text_area("📝 Descrição / Inscrição da Área", height=100)
 
+    # Campo para título dinâmico do PDF
+    titulo_pdf = st.text_input("✍️ Título do PDF", value="Relatório da Área Desenhada")
+
     img_bytes = create_map_image(geom)
     kmz_bytes = create_kmz(gdf_geom)
 
-    pdf_bytes = create_pdf(area_ha, municipio, localidade, descricao=descricao_area, image_bytes=img_bytes)
+    pdf_bytes = create_pdf(
+        area_ha,
+        municipio,
+        localidade,
+        descricao=descricao_area,
+        image_bytes=img_bytes,
+        titulo=titulo_pdf
+    )
 
     col1, col2 = st.columns(2)
     with col1:

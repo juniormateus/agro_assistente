@@ -49,7 +49,7 @@ def criar_pdf(data, cultura, talhao, atividade, produto, obs, condicoes, equipam
         pdf.set_font("Arial", style='I', size=12)
         pdf.cell(0, 10, assinante, ln=True, align='C')
 
-    return bytes(pdf.output(dest='S'))
+    return pdf.output(dest='S').encode("latin-1")
 
 # Inputs do usuário
 data = st.date_input("Data da atividade", value=datetime.date.today())
