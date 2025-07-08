@@ -1,59 +1,95 @@
-# Agroassistente 🌱
+# 🌱 Agroassistente
 
-**Projeto Open Source para auxiliar profissionais e produtores rurais com ferramentas digitais práticas e inteligentes.**
+**Agroassistente** é um projeto de estudos com foco em desenvolvimento de aplicações para o setor agro.  
+Foi criado como uma forma de colocar em prática diversos conceitos de programação e engenharia de software, incluindo:
 
----
-
-## Sobre o Agroassistente
-
-O Agroassistente é uma aplicação web desenvolvida para facilitar o manejo agrícola por meio de módulos que oferecem desde previsão do tempo até análises geoespaciais e planejamento agronômico. A ideia é centralizar ferramentas úteis em um só lugar, tornando o dia a dia no campo mais eficiente e fundamentado em dados.
-
----
-
-## Funcionalidades atuais
-
-- **Previsão do Tempo**  
-  Consulta a previsão do dia atual e dos próximos dois dias via API da Water API.
-
-- **Caderno de Campo Rápido**  
-  Registro de atividades diárias com informações como cultura, talhão, insumos aplicados, fotos e assinatura, com geração de PDF.
-
-- **Conversor de Medidas**  
-  Conversão de unidades comuns na área agronômica.
-
-- **Calendário Agronômico**  
-  Indicação da época ideal de plantio e colheita para culturas, com base na localização do usuário.
-
-- **Planejamento de Plantio**  
-  Cálculo da população de plantas por hectare e quantidade de sementes.
-
-- **Adubação e Calagem**  
-  Recomendações específicas baseadas na tonalidade do solo, cultura e produtividade esperada.
-
-- **Aplicação Inteligente de Defensivos**  
-  Cálculo de volume de calda, dose de produto e dose por tanque para aplicação eficiente.
-
-- **Geoprocessamento**  
-  Upload ou desenho manual de áreas para análise de parâmetros, com exportação em KMZ ou PDF.
-
-- **Módulo de Notícias**  
-  Atualizações sobre notícias relevantes para o setor agrícola.
+- Estruturação de código com funções e modularização em múltiplos arquivos
+- Criação de interfaces interativas com [Streamlit](https://streamlit.io/)
+- Consumo de **APIs públicas** (como Water API e NEWSAPI)
+- Implementação de **web scraping** (Dados CEPEA)
+- Manipulação de dados com **Pandas**
+- Geração de **relatórios em PDF**
+- Visualização de mapas com **Folium**
+- Integração com **Google Earth Engine** para análise espacial
+- Boas práticas de versionamento com Git e GitHub
 
 ---
 
-## Tecnologias utilizadas
+## 🚀 Funcionalidades Atuais
 
-- [Streamlit](https://streamlit.io/) - Interface web
-- Python 3.x
-- APIs externas (Water API para previsão do tempo)
-- Bibliotecas diversas para geoprocessamento e geração de PDFs
+- 💬 **Chat Agronômico**  
+  Converse com um assistente virtual treinado para responder dúvidas sobre agricultura, manejo, épocas de plantio e muito mais.
+
+- ⛅ **Previsão do Tempo**  
+  Conectada à Water API, exibe a previsão do tempo atual e dos próximos dois dias, auxiliando no planejamento de atividades agrícolas.
+
+- 📒 **Caderno de Campo Rápido**  
+  Registre informações da lavoura, como cultura, talhão, atividades realizadas, produtos aplicados, clima, imagens e assinatura. Gere relatórios organizados em PDF.
+
+- 📏 **Conversor de Medidas**  
+  Ferramenta prática para converter unidades utilizadas no contexto rural (metros, hectares, litros, etc.).
+
+- 💨 **Aplicação Inteligente de Defensivos**  
+  Calculadora de volume de calda, dose por tanque e dose por hectare para uma aplicação mais eficiente.
+
+- 🗺️ **Geoprocessamento com NDVI**  
+  Permite o upload de arquivos KMZ ou desenho manual de áreas no mapa. A aplicação consulta o Google Earth Engine, calcula o NDVI e gera relatórios com imagens e valores médios.
+
+- 📈 **Cotações Agrícolas e Pecuárias**  
+  Exibe preços atualizados de milho, soja, boi gordo, bezerro, suíno, frango e leite, com dados regionais quando disponíveis.
+
+- 📰 **Módulo de Notícias**  
+  Agrega e exibe as principais manchetes do setor agrícola para manter o usuário sempre bem informado.
 
 ---
 
-## Como rodar o projeto localmente
+## 🧪 Funcionalidades em Desenvolvimento
 
-1. Clone o repositório:
+- 📅 **Calendário Agronômico**  
+  Sugestão de épocas ideais de plantio e colheita com base em localização e cultura selecionada.
 
-   ```bash
-   git clone https://github.com/seu_usuario/agro_assistente.git
-   cd agro_assistente
+- 🌾 **Planejamento de Plantio**  
+  Calculadora da população ideal de plantas por hectare e quantidade de sementes necessária.
+
+- 💧 **Adubação e Calagem**  
+  Geração de recomendações técnicas a partir de análise de solo, cultura e produtividade esperada.
+
+---
+
+## 📦 Tecnologias e Bibliotecas Utilizadas
+
+- [Python](https://www.python.org/)
+- [Streamlit](https://streamlit.io/)
+- [FPDF](https://pyfpdf.readthedocs.io/)
+- [Pandas](https://pandas.pydata.org/)
+- [Folium](https://python-visualization.github.io/folium/)
+- [Google Earth Engine](https://earthengine.google.com/)
+- [Requests](https://docs.python-requests.org/) (para APIs e scraping)
+- [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/) (web scraping)
+
+---
+
+## 💻 Como Rodar Localmente
+
+### Pré-requisitos
+
+- Python 3.8 ou superior
+- Git instalado
+
+### Passos
+
+```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/agroassistente.git
+cd agroassistente
+
+# Crie e ative o ambiente virtual
+python -m venv .venv
+source .venv/bin/activate  # Linux/Mac
+.venv\Scripts\activate      # Windows
+
+# Instale as dependências
+pip install -r requirements.txt
+
+# Rode o app
+streamlit run app.py
