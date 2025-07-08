@@ -80,7 +80,7 @@ Foi criado como uma forma de colocar em prática diversos conceitos de programa�
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/agroassistente.git
+git clone https://github.com/seu-usuario/agro_assistente.git
 cd agroassistente
 
 # Crie e ative o ambiente virtual
@@ -92,4 +92,4 @@ source .venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
 
 # Rode o app
-streamlit run app.py
+streamlit run Home.py
