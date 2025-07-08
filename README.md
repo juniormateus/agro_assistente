@@ -66,6 +66,7 @@ Foi criado como uma forma de colocar em pr√°tica diversos conceitos de programa√
 - [Google Earth Engine](https://earthengine.google.com/)
 - [Requests](https://docs.python-requests.org/) (para APIs e scraping)
 - [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/) (web scraping)
+- Fastapi
 
 ---
 
