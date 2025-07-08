@@ -1,7 +1,7 @@
 # 🌱 Agroassistente
 
 **Agroassistente** é um projeto de estudos com foco em desenvolvimento de aplicações para o setor agro.  
-Foi criado como uma forma de colocar em prática diversos conceitos de programação e engenharia de software, incluindo:
+Foi criado como uma forma de colocar em prática diversos conceitos de programação, incluindo:
 
 - Estruturação de código com funções e modularização em múltiplos arquivos
 - Criação de interfaces interativas com [Streamlit](https://streamlit.io/)
