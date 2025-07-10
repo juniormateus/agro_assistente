@@ -10,6 +10,12 @@ import os
 import requests
 import simplekml
 
+# Configuração da página
+st.set_page_config(layout='wide')
+
+# Inicializa geom para evitar NameError
+geom = None
+
 # Função para criar o KMZ a partir do GeoDataFrame
 def create_kmz(gdf):
     kml = simplekml.Kml()
@@ -128,9 +134,13 @@ def reverse_geocode(lat, lon):
 st.title("📐 Geoprocessamento e Análise de Área")
 
 st.markdown("""
-Desenhe a área de interesse no mapa ou faça upload de um arquivo KMZ.
-Será calculada a área em hectares, e mostradas informações do município e localidade.
-Você poderá exportar o arquivo KMZ com o polígono e um relatório PDF com as informações, descrição e imagem da área.
+### Como usar esta ferramenta
+
+1. Escolha o tipo de mapa base desejado (com labels ou satélite).
+2. Desenhe manualmente a área de interesse no mapa ou faça o upload de um arquivo KMZ.
+3. A ferramenta irá calcular a área total em hectares e identificar o município e localidade automaticamente.
+4. Preencha, se desejar, a descrição da área e um título personalizado para o relatório.
+5. Baixe os arquivos gerados: KMZ, GeoJSON e PDF com imagem e informações da área.
 """)
 
 basemap_option = st.radio(
@@ -140,7 +150,7 @@ basemap_option = st.radio(
 
 uploaded_kmz = st.file_uploader("Upload de arquivo KMZ (opcional)", type=["kmz"])
 
-geom = None
+# Caso haja upload, tenta extrair a geometria
 if uploaded_kmz:
     try:
         gdf = gpd.read_file(uploaded_kmz)
@@ -168,6 +178,7 @@ draw.add_to(m)
 
 output = st_folium(m, height=500, width=700, returned_objects=["all_drawings"])
 
+# Se desenhou no mapa, pega a geometria desenhada
 if output and output.get("all_drawings") and output["all_drawings"]:
     try:
         geojson_draw = output["all_drawings"][0]["geometry"]
@@ -175,6 +186,7 @@ if output and output.get("all_drawings") and output["all_drawings"]:
     except Exception as e:
         st.error(f"Erro ao interpretar desenho: {e}")
 
+# Se a geometria existe, mostra dados, gera arquivos e disponibiliza downloads
 if geom:
     gdf_geom = gpd.GeoDataFrame(geometry=[geom], crs="EPSG:4326")
 
@@ -195,6 +207,7 @@ if geom:
 
     img_bytes = create_map_image(geom)
     kmz_bytes = create_kmz(gdf_geom)
+    geojson_bytes = gdf_geom.to_json().encode("utf-8")
 
     pdf_bytes = create_pdf(
         area_ha,
@@ -205,7 +218,7 @@ if geom:
         titulo=titulo_pdf
     )
 
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     with col1:
         st.download_button(
             label="📥 Baixar KMZ da Área",
@@ -214,6 +227,13 @@ if geom:
             mime="application/vnd.google-earth.kmz"
         )
     with col2:
+        st.download_button(
+            label="📥 Baixar GeoJSON da Área",
+            data=geojson_bytes,
+            file_name="area_desenhada.geojson",
+            mime="application/geo+json"
+        )
+    with col3:
         st.download_button(
             label="📥 Baixar PDF do Relatório",
             data=pdf_bytes,

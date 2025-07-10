@@ -4,7 +4,27 @@ import datetime
 import tempfile
 
 st.set_page_config(layout="wide")
-st.title("📒 Caderno de Campo Rápido")
+st.title("📒 Caderno de Campo")
+
+# Texto das instruções para o módulo
+instrucoes_caderno = """
+Este módulo permite o registro prático e organizado das atividades realizadas no campo. Você pode registrar:
+
+- Data da atividade
+- Cultura trabalhada
+- Talhão ou área específica
+- Tipo de atividade (plantio, pulverização, colheita, etc.)
+- Produto ou insumo utilizado
+- Condições climáticas durante a atividade
+- Equipamento utilizado
+- Observações gerais e importantes do dia a dia
+
+Além disso, você pode anexar uma foto da atividade e adicionar uma assinatura (nome ou imagem) para validar o registro.
+
+Após preencher os dados, é possível gerar um resumo da atividade e baixar um arquivo PDF para manter um histórico físico ou digital das operações no campo.
+
+Use este caderno para facilitar o monitoramento, planejamento e a organização das informações no seu trabalho agrícola.
+"""
 
 def criar_pdf(data, cultura, talhao, atividade, produto, obs, condicoes, equipamento, assinante, assinatura_img_bytes, imagem_atividade_bytes):
     pdf = FPDF()
@@ -51,55 +71,65 @@ def criar_pdf(data, cultura, talhao, atividade, produto, obs, condicoes, equipam
 
     return pdf.output(dest='S').encode("latin-1")
 
-# Inputs do usuário
-data = st.date_input("Data da atividade", value=datetime.date.today())
-cultura = st.text_input("Cultura", placeholder="Ex: Soja, Milho, Café")
-talhao = st.text_input("Talhão ou área", placeholder="Ex: Talhão 1, Lavoura sul")
-atividade = st.selectbox(
-    "Tipo de atividade",
-    ["Plantio", "Pulverização", "Adubação", "Calagem", "Colheita", "Outra"]
-)
-produto = st.text_input("Produto/insumo aplicado (opcional)", placeholder="Nome do defensivo, adubo etc.")
-condicoes = st.text_input("Condições climáticas (opcional)", placeholder="Ex: Ensolarado, vento fraco")
-equipamento = st.text_input("Equipamento utilizado (opcional)", placeholder="Ex: Pulverizador Costal")
-obs = st.text_area("Observações gerais", placeholder="Ex: Aplicação feita no fim da tarde, com vento fraco.")
 
-# Upload de imagem da atividade
-imagem_atividade = st.file_uploader("Anexar foto da atividade (opcional)", type=["png", "jpg", "jpeg"])
+# Criar as abas com ordem corrigida
+tab1, tab2 = st.tabs(["Registro de Atividades", "Instruções"])
 
-# Assinatura opcional
-usar_assinatura = st.checkbox("Adicionar assinatura")
-assinante = ""
-assinatura_img_bytes = None
-if usar_assinatura:
-    assinante = st.text_input("Nome para assinatura")
-    assinatura_img = st.file_uploader("Ou envie imagem da assinatura (opcional)", type=["png", "jpg", "jpeg"])
-    if assinatura_img is not None:
-        assinatura_img_bytes = assinatura_img.read()
+with tab1:
+    # Inputs do usuário
+    data = st.date_input("Data da atividade", value=datetime.date.today())
+    cultura = st.text_input("Cultura", placeholder="Ex: Soja, Milho, Café")
+    talhao = st.text_input("Talhão ou área", placeholder="Ex: Talhão 1, Lavoura sul")
+    atividade = st.selectbox(
+        "Tipo de atividade",
+        ["Plantio", "Pulverização", "Adubação", "Calagem", "Colheita", "Outra"]
+    )
+    produto = st.text_input("Produto/insumo aplicado (opcional)", placeholder="Nome do defensivo, adubo etc.")
+    condicoes = st.text_input("Condições climáticas (opcional)", placeholder="Ex: Ensolarado, vento fraco")
+    equipamento = st.text_input("Equipamento utilizado (opcional)", placeholder="Ex: Pulverizador Costal")
+    obs = st.text_area("Observações gerais", placeholder="Ex: Aplicação feita no fim da tarde, com vento fraco.")
 
-if st.button("📄 Gerar Resumo da Atividade"):
-    resumo = f"""
-    📅 Data: {data.strftime('%d/%m/%Y')}
-    🌱 Cultura: {cultura}
-    🗺️ Talhão/Área: {talhao}
-    🛠️ Atividade: {atividade}
-    🧪 Produto/Insumo: {produto if produto else 'Não informado'}
-    🌤️ Condições Climáticas: {condicoes if condicoes else 'Não informado'}
-    ⚙️ Equipamento: {equipamento if equipamento else 'Não informado'}
-    📝 Observações: {obs if obs else 'Nenhuma'}
-    """
+    # Upload de imagem da atividade
+    imagem_atividade = st.file_uploader("Anexar foto da atividade (opcional)", type=["png", "jpg", "jpeg"])
+
+    # Assinatura opcional
+    usar_assinatura = st.checkbox("Adicionar assinatura")
+    assinante = ""
+    assinatura_img_bytes = None
     if usar_assinatura:
-        resumo += f"\n✍️ Assinatura: {assinante if assinante else 'Imagem anexada' if assinatura_img_bytes else 'Nenhuma'}"
+        assinante = st.text_input("Nome para assinatura")
+        assinatura_img = st.file_uploader("Ou envie imagem da assinatura (opcional)", type=["png", "jpg", "jpeg"])
+        if assinatura_img is not None:
+            assinatura_img_bytes = assinatura_img.read()
 
-    st.success("Resumo da atividade gerado:")
-    st.code(resumo)
+    if st.button("📄 Gerar Resumo da Atividade"):
+        resumo = f"""
+Data: {data.strftime('%d/%m/%Y')}
+Cultura: {cultura}
+Talhão/Área: {talhao}
+Atividade: {atividade}
+Produto/Insumo: {produto if produto else 'Não informado'}
+Condições Climáticas: {condicoes if condicoes else 'Não informado'}
+Equipamento: {equipamento if equipamento else 'Não informado'}
+Observações: {obs if obs else 'Nenhuma'}
+"""
+        if usar_assinatura:
+            resumo += f"\n✍️ Assinatura: {assinante if assinante else 'Imagem anexada' if assinatura_img_bytes else 'Nenhuma'}"
 
-    st.download_button(
-        label="📥 Baixar PDF do Caderno de Campo",
-        data=criar_pdf(
+        st.success("Resumo da atividade gerado:")
+        st.code(resumo)
+
+        pdf_bytes = criar_pdf(
             data, cultura, talhao, atividade, produto, obs, condicoes, equipamento,
             assinante, assinatura_img_bytes, imagem_atividade.read() if imagem_atividade else None
-        ),
-        file_name=f"caderno_campo_{data.strftime('%Y%m%d')}.pdf",
-        mime="application/pdf"
-    )
+        )
+
+        st.download_button(
+            label="📥 Baixar PDF do Caderno de Campo",
+            data=pdf_bytes,
+            file_name=f"caderno_campo_{data.strftime('%Y%m%d')}.pdf",
+            mime="application/pdf"
+        )
+
+with tab2:
+    st.markdown(instrucoes_caderno)

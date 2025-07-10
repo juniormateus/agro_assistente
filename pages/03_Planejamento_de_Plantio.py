@@ -14,7 +14,7 @@ def formatar_numero(valor, casas_decimais=0):
     else:
         return f"{valor:,.{casas_decimais}f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
-st.set_page_config(page_title="🌱 Planejamento de Plantio", layout="centered")
+st.set_page_config(page_title="🌱 Planejamento de Plantio", layout="wide")
 st.title("🌱 Planejamento de Plantio")
 
 opcao = st.radio("Selecione o cálculo desejado:", [
