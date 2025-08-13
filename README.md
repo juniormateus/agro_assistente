@@ -41,14 +41,14 @@ Foi criado como uma forma de colocar em prática diversos conceitos de programa�
 - 📰 **Módulo de Notícias**  
   Agrega e exibe as principais manchetes do setor agrícola para manter o usuário sempre bem informado.
 
-- 🗺️ Módulo de NDVI
-Permite analisar áreas específicas e calcular o NDVI médio para monitoramento de vegetação, com base em dados históricos ou atuais.
+- 🗺️ **Módulo de NDVI**
+  Permite analisar áreas específicas e calcular o NDVI médio para monitoramento de vegetação, com base em dados históricos ou atuais.
 
-- 🌾 Módulo MapBiomas
-Realiza análises de uso e ocupação do solo, permitindo ao produtor entender a cobertura e mudanças na sua área de interesse.
+- 🌾 **Módulo MapBiomas**
+  Realiza análises de uso e ocupação do solo, permitindo ao produtor entender a cobertura e mudanças na sua área de interesse.
 
-- 💧 Módulo de Precipitação
-Consulta dados de precipitação diária acumulada, fornecendo informações precisas sobre a quantidade de chuva em uma área e período específicos.
+- 💧 **Módulo de Precipitação**
+  Consulta dados de precipitação diária acumulada, fornecendo informações precisas sobre a quantidade de chuva em uma área e período específicos.
 
 ---
 
