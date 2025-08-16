@@ -14,7 +14,7 @@ from openpyxl.drawing.image import Image as XLImage
 st.set_page_config(layout='wide')
 
 # Inicializar Earth Engine
-ee.Initialize(project='ee-juniormateus')
+ee.Initialize()
 
 # === FUNÇÕES ===
 
