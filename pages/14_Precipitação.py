@@ -15,10 +15,10 @@ st.set_page_config(layout='wide')
 
 # Inicializa o Earth Engine
 try:
-    ee.Initialize(project='ee-juniormateus')
+    ee.Initialize()
 except Exception as e:
     ee.Authenticate()
-    ee.Initialize(project='ee-juniormateus')
+    ee.Initialize()
 
 st.title("🌧️ Análise Temporal de Precipitação")
 
