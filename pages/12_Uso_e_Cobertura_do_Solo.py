@@ -15,7 +15,7 @@ from core.palete_biome import paleta_cores, paleta_nome, dicionario_classes
 st.set_page_config(layout='wide')
 
 # Inicializar o Earth Engine
-ee.Initialize(project='ee-juniormateus')
+ee.Initialize()
 
 @st.cache_data
 def carregar_imagem_mapbiomas(ano):
